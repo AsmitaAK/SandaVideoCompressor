@@ -21,6 +21,13 @@ VideoCompressor.start = function(successCallback, errorCallback, options) {
 };
 
 
-if (typeof module != 'undefined' && module.exports) {
-  module.exports = VideoCompressor;
-}
+VideoCompressor.install = function () {
+  if (!window.plugins) {
+    window.plugins = {};
+  }
+
+  window.plugins.videoCompressor = new VideoCompressor();
+  return window.plugins.videoCompressor;
+};
+
+cordova.addConstructor(VideoCompressor.install);

@@ -19,7 +19,7 @@
 		</engines>
   
 		  <js-module src="www/VideoCompressor.js" name="VideoCompressor">
-				  <clobbers target="VideoCompressor" />
+				  <clobbers target="window.plugins.videoCompressor" />
 			   </js-module>
 	   
 	   
