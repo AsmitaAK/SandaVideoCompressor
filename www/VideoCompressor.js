@@ -1,49 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
-	<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-			xmlns:android="http://schemas.android.com/apk/res/android"
-			id="com.video.compressor"
-			version="0.0.5">
 
-	  <name>VideoCompressor</name>
 
-	  <description>
-		VideoCompressorrApp Plugin 
-	  </description>
+cordova.define("com.video.compressor.VideoCompressor", function(require, exports, module) { var exec = require('cordova/exec');
 
-	  <license>Sanda</license>
+/**
+ * Provides access to the vibration mechanism on the device.
+ */
 
-	  <engines>
-		<engine name="cordova" version=">=3.0.0"/>
-	  </engines>
+module.exports = {
 
-	  <js-module src="www/VideoCompressor.js" name="VideoCompressor">
-		<clobbers target="window.plugins.VideoCompressor" />
-	  </js-module>
+    /**
+     * Causes the device to vibrate.
+     *
+     * @param {Integer} mills       The number of milliseconds to vibrate for.
+     */
+     
+    start: function(successCallback, errorCallback) {
+        //exec(successCallback, errorCallback, "ContactVcardPicker", "getContactVcard", []);
+        exec(successCallback, errorCallback, 'VideoCompressor', 'start', []);
+    },
+};
 
-	 
-	  <!-- android -->
-	  <platform name="android">
+});
+/*
+ function successCallback(data){
+	 alert("sanda"+data);
+ }
+ function errorCallback(data){
+	 alert("error");
+ }
+*/
+function success(data)
+{
+alert("success"+data); 
+}
 
-		<config-file target="res/xml/config.xml" parent="/*">
-		  <feature name="VideoCompressor">
-			<param name="android-package" value="com.video.compressor.VideoCompressor" />
-		  </feature>
-		</config-file>
-
-		<source-file src="src/android/com/video/compressor/VideoCompressor.java" target-dir="src/com/video/compressor"/>
-		 
-		 <config-file target="AndroidManifest.xml" parent="/manifest">
-				
-				<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-				<uses-permission android:name="android.permission.WAKE_LOCK" /> 
-			</config-file>
-
-			
-
-	  <source-file src="libs/ffmpeg4android_os.jar" target-dir="libs" framework="true"/>
-		  <source-file src="libs/android-support-v4.jar" target-dir="libs" framework="true"/>
-	
-
-	  </platform>
-
-	</plugin>
+ function failure(data)
+{
+alert("failure");
+}
